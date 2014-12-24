@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="ouc.jeep.associationMapping.oneToMany.Bidirectional">
+    <class name="Classes" table="classes">	
+    	<id name="cid" type="java.lang.Long" length="5">
+    		<generator class="native"></generator>
+    	</id>
+    	
+    	<property name="cname" type="java.lang.String" length="20"></property>
+    	<property name="description" type="java.lang.String" length="100"></property>
+    	
+    	<!-- 
+    		cascade指的是对象对对象的操作
+    		inverse指的是对象对关系的操作
+    	 -->
+    	<set name="students" cascade="all">
+    		 <key column="cid" />
+    		 <!-- 
+    		 	classes和哪个对象进行关联
+    		  -->
+    		 <one-to-many class="Student"/>
+    	</set>
+    </class>
+</hibernate-mapping>
