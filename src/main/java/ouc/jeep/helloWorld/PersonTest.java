@@ -11,7 +11,7 @@ import org.junit.Test;
 import ouc.jeep.domain.Person;
 import ouc.jeep.utils.HibernateUtil;
 
-/**
+/** 对表的 CRUD
  *
  * Date-2014年12月9日
  */
@@ -41,7 +41,9 @@ public class PersonTest {
 		SessionFactory sessionFactory = configuration.buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		
-		Person person = (Person) session.get(Person.class, 3L);
+		//hibernate中的session.get方法的第二个参数的类型应该和相应的持久化类的标识符类型相匹配
+		Person person = (Person) session.get(Person.class, 4L); 
+		
 		System.err.println(person.getPname()+" sex:"+person.getPsex()); 
 	}
 	
@@ -49,7 +51,6 @@ public class PersonTest {
 	public void updatePerson(){
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Session session = sessionFactory.openSession();
-		
 		
 		Transaction transaction = session.beginTransaction();
 		
@@ -75,7 +76,6 @@ public class PersonTest {
 		
 		transcation.commit();
 		session.close();
-		
 	}
 	
 	@Test
@@ -85,6 +85,5 @@ public class PersonTest {
 		List<Person> list = session.createQuery("from Person").list();
 		System.err.println(list.size()); 
 	}
-	
 	
 }

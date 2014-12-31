@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="ouc.jeep.optimize.sessionfactory.cache">
+    <class name="Student" table="student">
+		<id name="sid" column="sid" type="java.lang.Long" length="5">
+            <generator class="native"/>
+        </id>
+        <property name="sname" type="java.lang.String" length="20" />
+        <property name="description" type="java.lang.String" length="100" />
+        
+        <!-- 
+    		多对一
+    		   注意：在many-to-one中没有inverse属性,（一对多的关系中，外键在多的一方）
+    		     	对student表的修改本身就是维护外键
+    	 -->
+    	 <!-- 
+    			外键
+    			   描述了通过student建立与classes之间的联系
+    			  class="ouc.jeep.associationMapping.oneToMany.Bidirectional.Classes"
+    			   cascade="all" 
+    	-->
+    	<many-to-one name="classes" column="cid" cascade="all" />
+        
+    </class>
+</hibernate-mapping>

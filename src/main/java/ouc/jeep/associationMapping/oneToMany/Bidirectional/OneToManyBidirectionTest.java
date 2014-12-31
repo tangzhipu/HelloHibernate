@@ -200,4 +200,59 @@ public class OneToManyBidirectionTest {
 		transaction.commit();
 		session.close();
 	}
+	
+	/**
+	 * 解除该班级和所有的学生之间的关系
+	 */
+	@Test
+	public void testRealseAll_R(){
+		Session session = sessionFactory.openSession();
+		Transaction transaction = session.beginTransaction();
+		Classes classes = (Classes)session.get(Classes.class, 1L);
+		Set<Student> students = classes.getStudents();
+		for(Student student:students){
+			student.setClasses(null);
+		}
+		transaction.commit();
+		session.close();
+	}
+	/**
+	 * 先解除关系，再删除班级
+	 */
+	@Test
+	public void testDeleteClass_1(){
+		Session session = sessionFactory.openSession();
+		Transaction transaction = session.beginTransaction();
+		Classes classes = (Classes)session.get(Classes.class, 1L);
+		Set<Student> students = classes.getStudents();
+		for(Student student:students){
+			student.setClasses(null);
+		}
+		session.delete(classes);
+		transaction.commit();
+		session.close();
+	}
+	
+	
+	/**
+	 * 删除学生
+	 *    直接删除学生即可
+	 */
+	
+	/**
+	 * 在删除班级的时候，同时删除整个班级的学生
+	 */
+	@Test
+	public void teetst(){
+		Session session = sessionFactory.openSession();
+		Transaction transaction = session.beginTransaction();
+		Classes classes = (Classes)session.get(Classes.class, 1L);
+		Set<Student> students = classes.getStudents();
+		for(Student student:students){
+				student.setClasses(null);
+				break;
+		}
+		transaction.commit();
+		session.close();
+	}
 }

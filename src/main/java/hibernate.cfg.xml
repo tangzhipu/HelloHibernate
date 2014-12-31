@@ -18,7 +18,7 @@
         <!-- SQL dialect -->
         <property name="dialect">org.hibernate.dialect.SQLServer2008Dialect</property>
 
-        <!-- Enable Hibernate's automatic session context management -->
+        <!-- Enable Hibernate's automatic session context management  [getCurrentSession] -->
         <property name="current_session_context_class">thread</property>
 
         <!-- Disable the second-level cache  -->

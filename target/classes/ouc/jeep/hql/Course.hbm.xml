@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="ouc.jeep.hql">
+    <class name="Course" table="course">
+		 <id name="cid" column="cid" type="java.lang.Long" length="5">
+            <generator class="native"/>
+        </id>
+        <property name="cname" type="java.lang.String" length="20" />
+        <property name="description" type="java.lang.String" length="100" />
+        
+    	<set name="students" table="student_course" cascade="save-update" inverse="true">
+    		<key column="cid" />
+    		<many-to-many class="Student" column="sid" />
+    	</set>
+        
+    </class>
+</hibernate-mapping>

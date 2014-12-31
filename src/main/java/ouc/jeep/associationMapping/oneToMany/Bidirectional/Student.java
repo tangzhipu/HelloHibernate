@@ -3,7 +3,7 @@ package ouc.jeep.associationMapping.oneToMany.Bidirectional;
 import java.io.Serializable;
 
 /**
- * @description: 一对多双向连接
+ * @description: 一对多双向连接，student可以维护外键关系
  * @author: jeep
  * @date: 2014年12月24日
  */
